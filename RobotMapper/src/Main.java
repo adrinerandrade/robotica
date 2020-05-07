@@ -8,14 +8,53 @@ public class Main {
 		MechanicalArm mechanicalArm = new MechanicalArm(Motor.B, SensorPort.S1);
 		Robot robot = new Robot(Motor.A, Motor.C, mechanicalArm);
 		
-		robot.move(Direction.Move.FRONT);
-		robot.move(Direction.Move.BACK);
+		System.out.print("NORTH -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
 		robot.rotate(Direction.Rotate.LEFT);
+		System.out.print("WEST -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.LEFT);
+		System.out.print("SOUTH -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.LEFT);
+		System.out.print("EAST -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
 		robot.rotate(Direction.Rotate.RIGHT);
-	
-		System.out.println(robot.getMechanicalArm().hasObstacle(Direction.LEFT));
-		System.out.println(robot.getMechanicalArm().hasObstacle(Direction.FRONT));
-		System.out.println(robot.getMechanicalArm().hasObstacle(Direction.RIGHT));
+		System.out.print("SOUTH -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.RIGHT);
+		System.out.print("WEST -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.LEFT);
+		System.out.print("SOUTH -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.LEFT);
+		System.out.print("EAST -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.LEFT);
+		System.out.print("NORTH -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.LEFT);
+		System.out.print("WEST -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.RIGHT);
+		System.out.print("NORTH -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.RIGHT);
+		System.out.print("EAST -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.RIGHT);
+		System.out.print("SOUTH -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		robot.rotate(Direction.Rotate.RIGHT);
+		System.out.print("WEST -");
+		System.out.println(robot.getVirtualCompass().getCurrentOrientation());
+		
+		while (true);
+		
+		/*Mapping graph = new Mapping(robot);
+		System.out.println(graph);
+		while (true);*/
 	}
 
 }

@@ -5,6 +5,7 @@ public class Robot {
 	private final NXTRegulatedMotor leftMotor;
 	private final NXTRegulatedMotor rightMotor;
 	private final MechanicalArm mechanicalArm;
+	private Compass virtualCompass = new Compass();
 	
 	public Robot(NXTRegulatedMotor leftMotor, NXTRegulatedMotor rightMotor, MechanicalArm mechanicalArm) {
 		this.leftMotor = leftMotor;
@@ -30,10 +31,15 @@ public class Robot {
 			leftMotor.rotate(RobotSpecs.ROTATE_SPEED, true);
 			rightMotor.rotate(-RobotSpecs.ROTATE_SPEED);
 		}
+		virtualCompass.updateOrientation(direction);
 	}
 	
 	public MechanicalArm getMechanicalArm() {
 		return this.mechanicalArm;
+	}
+	
+	public Compass getVirtualCompass() {
+		return this.virtualCompass;
 	}
 	
 }
