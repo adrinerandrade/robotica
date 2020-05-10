@@ -42,7 +42,7 @@ public class Node {
 	}
 
 	public String toString() {
-		return "Node [x=" + x + ", y=" + y + "]";
+		return "(x:" + x + ",y:" + y + ")";
 	}
 
 }

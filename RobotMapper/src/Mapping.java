@@ -1,17 +1,14 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.Stack;
 
 public class Mapping {
 	
 	private final Robot robot; 
 	private final Stack stack = new Stack();
-	private Map mappingResult;
-	private Set knownNodes;
+	private Hashtable mappingResult;
+	private CustomSet knownNodes;
 	
 	public Mapping(Robot robot) {
 		this.robot = robot;
@@ -20,9 +17,9 @@ public class Mapping {
 	/***
 	 * @return The mapping result with the signature: Map<Node, List<Node>> 
 	 */
-	public Map map() {
-		this.mappingResult = new HashMap();
-		this.knownNodes = new HashSet();
+	public Hashtable map() {
+		this.mappingResult = new Hashtable();
+		this.knownNodes = new CustomSet();
 		
 		stack.push(analyseAction(new Node(0, 0)));
 		while (!stack.isEmpty()) {
@@ -35,11 +32,14 @@ public class Mapping {
 	
 	private MappingAction analyseAction(final Node node) {
 		knownNodes.add(node);
+		if (mappingResult.get(node) == null) {
+			mappingResult.put(node, new CustomSet());
+		}
 		
 		return new MappingAction() {
 			public void execute() {
 				Node currentNode = node;
-				System.out.println("x: " + node.getX() + "| y: " + node.getY());
+				System.out.println(node.toString());
 				
 				List siblings = getSiblings(currentNode);
 				
@@ -104,7 +104,7 @@ public class Mapping {
 	
 	private List getSiblings(Node node) {
 		String currentOrientation = robot.getVirtualCompass().getCurrentOrientation();
-		LinkedList siblings = new LinkedList();
+		ArrayList siblings = new ArrayList(3);
 		if (currentOrientation.equals(Orientation.NORTH)) {
 			siblings.add(new Node(node.getX() - 1, node.getY()));
 			siblings.add(new Node(node.getX(), node.getY() + 1));
@@ -132,14 +132,14 @@ public class Mapping {
 	}
 	
 	private void addRelation(Node node1, Node node2) {
-		Set childs1 = (Set) mappingResult.get(node1);
+		CustomSet childs1 = (CustomSet) mappingResult.get(node1);
 		if (childs1 == null) {
-			childs1 = new HashSet();
+			childs1 = new CustomSet();
 			mappingResult.put(node1, childs1);
 		}
-		Set childs2 = (Set) mappingResult.get(node2);
+		CustomSet childs2 = (CustomSet) mappingResult.get(node2);
 		if (childs2 == null) {
-			childs2 = new HashSet();
+			childs2 = new CustomSet();
 			mappingResult.put(node2, childs2);
 		}
 		
