@@ -41,4 +41,8 @@ public class Node {
 		return true;
 	}
 
+	public String toString() {
+		return "Node [x=" + x + ", y=" + y + "]";
+	}
+
 }
